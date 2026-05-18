@@ -1,0 +1,6 @@
+{
+  "name": "LocalLabor",
+  "description": "An online platform connecting customers with nearby daily wage workers and skilled laborers (plumbers, electricians, farm help) in rural and semi-urban areas.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

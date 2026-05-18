@@ -1,0 +1,85 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "System user (Customer, Worker, or Admin)",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "role": { "type": "string", "enum": ["customer", "worker", "admin"] },
+        "name": { "type": "string" },
+        "phone": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "location": { 
+          "type": "object",
+          "properties": {
+            "lat": { "type": "number" },
+            "lng": { "type": "number" },
+            "address": { "type": "string" }
+          }
+        },
+        "email": { "type": "string" },
+        "isVerified": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "role", "name"]
+    },
+    "WorkerProfile": {
+      "title": "Worker Profile",
+      "description": "Additional details for worker accounts",
+      "type": "object",
+      "properties": {
+        "workerId": { "type": "string" },
+        "skills": { "type": "array", "items": { "type": "string" } },
+        "category": { "type": "string" },
+        "bio": { "type": "string" },
+        "hourlyRate": { "type": "number" },
+        "availability": { "type": "boolean" },
+        "rating": { "type": "number" },
+        "reviewCount": { "type": "number" },
+        "lastActive": { "type": "string", "format": "date-time" }
+      },
+      "required": ["workerId", "skills", "category"]
+    },
+    "Booking": {
+      "title": "Booking",
+      "description": "Service request from customer to worker",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerId": { "type": "string" },
+        "workerId": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "accepted", "rejected", "completed", "cancelled"] },
+        "serviceType": { "type": "string" },
+        "description": { "type": "string" },
+        "scheduledAt": { "type": "string", "format": "date-time" },
+        "location": { 
+          "type": "object",
+          "properties": {
+            "lat": { "type": "number" },
+            "lng": { "type": "number" },
+            "address": { "type": "string" }
+          }
+        },
+        "amount": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["customerId", "workerId", "status", "serviceType"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Main user collection"
+    },
+    "/workerProfiles/{workerId}": {
+      "schema": "WorkerProfile",
+      "description": "Detailed profile for workers"
+    },
+    "/bookings/{bookingId}": {
+      "schema": "Booking",
+      "description": "All service bookings"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900;
+  }
+}
+
+.geometric-shadow {
+  box-shadow: 8px 8px 0px 0px rgba(30, 58, 138, 1);
+}
+
+.geometric-shadow-sm {
+  box-shadow: 4px 4px 0px 0px rgba(30, 58, 138, 1);
+}
